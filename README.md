@@ -29,10 +29,11 @@
       - NUnit3TestAdapter;
       - Selenium.Support;
       - Selenium.WebDriver.
-  - Run tests via 'Visual Studio -> Test Explorer'.
-
+  - Check *Framework.Main.Core.Driver.Factory.CreateDriver(DriverType type)* to resources includes *chromedriver.exe*
+  - *Tests\Configs\App.config* is to use static configurable properies
+  - Run tests via *'Visual Studio -> Test Explorer'*.
 ## Versions:
-ChromeDriver version is 87.0.4280.88
+ChromeDriver version is *87.0.4280.88*
 
 ## To do:
   - Implement page decoration;
