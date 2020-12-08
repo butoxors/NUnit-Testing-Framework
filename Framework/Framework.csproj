@@ -37,7 +37,14 @@
     <Reference Include="nunit.framework, Version=3.12.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\Tests\packages\NUnit.3.12.0\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="SeleniumExtras.PageObjects, Version=3.11.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\Tests\packages\DotNetSeleniumExtras.PageObjects.3.11.0\lib\net45\SeleniumExtras.PageObjects.dll</HintPath>
+    </Reference>
+    <Reference Include="SeleniumExtras.WaitHelpers, Version=3.11.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\Tests\packages\DotNetSeleniumExtras.WaitHelpers.3.11.0\lib\net45\SeleniumExtras.WaitHelpers.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
@@ -54,24 +61,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Main\Core\Enums\Constants\WebDriverConfig.cs" />
+    <Compile Include="Main\Core\Configs\ConfigReader.cs" />
+    <Compile Include="Main\Core\Configs\IConfigReader.cs" />
     <Compile Include="Main\Core\Driver\WebDriverFactory.cs" />
     <Compile Include="Main\Core\Driver\WebDriverManager.cs" />
     <Compile Include="Main\Core\Enums\DriverType.cs" />
     <Compile Include="Main\Core\Tests\BaseTest.cs" />
     <Compile Include="Main\Core\UI\Models\SearchResultModel.cs" />
     <Compile Include="Main\Core\UI\Pages\BasePage.cs" />
+    <Compile Include="Main\Core\Utils\DriverConverter.cs" />
     <Compile Include="Main\Core\Utils\WebDriverWaitUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\Tests\packages\NUnit.3.12.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\Tests\packages\NUnit.3.12.0\build\NUnit.props'))" />
+    <Error Condition="!Exists('..\Tests\packages\Selenium.Firefox.WebDriver.0.27.0\build\Selenium.Firefox.WebDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\Tests\packages\Selenium.Firefox.WebDriver.0.27.0\build\Selenium.Firefox.WebDriver.targets'))" />
   </Target>
+  <Import Project="..\Tests\packages\Selenium.Firefox.WebDriver.0.27.0\build\Selenium.Firefox.WebDriver.targets" Condition="Exists('..\Tests\packages\Selenium.Firefox.WebDriver.0.27.0\build\Selenium.Firefox.WebDriver.targets')" />
 </Project>

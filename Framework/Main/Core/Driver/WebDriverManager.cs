@@ -1,6 +1,5 @@
 ﻿using Framework.Main.Core.Configs;
 using Framework.Main.Core.Driver.Factory;
-using Framework.Main.Core.Enums;
 using OpenQA.Selenium;
 using System;
 
@@ -8,20 +7,24 @@ namespace Framework.Main.Core.Driver
 {
     public static class WebDriverManager
     {
-        public static IWebDriver GetDriver(DriverType browserType = WebDriverConfig.driverType)
+        private static ConfigReader configReader = new ConfigReader();
+        public static IWebDriver driver;
+
+        public static IWebDriver GetDriver()
         {
-            IWebDriver driver = WebDriverFactory.GetDriver(browserType);
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(WebDriverConfig.implictWait);
+            if (driver == null)
+            {
+                driver = WebDriverFactory.GetDriver();
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(configReader.ImplicitWait);
+                driver.Url = configReader.URL;
+            }
 
             return driver;
         }
 
         public static void CleanUp()
         {
-           foreach(var driver in WebDriverFactory.webDrivers)
-            {
-                driver.Value.Quit();
-            }
+            WebDriverFactory.TerminateAll();
         }
     }
 }

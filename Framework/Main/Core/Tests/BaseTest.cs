@@ -1,5 +1,4 @@
-﻿using Framework.Main.Core.Configs;
-using Framework.Main.Core.Driver;
+﻿using Framework.Main.Core.Driver;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
@@ -14,7 +13,6 @@ namespace Framework.Main.Core.UI.Tests
         public void setUp()
         {
             driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl(WebDriverConfig.baseUrl);
         }
 
         [TearDown]
