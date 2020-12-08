@@ -8,9 +8,10 @@ namespace Framework.Main.Core.Utils
 {
     public static class WebDriverWaitUtils
     {
+        private static ConfigReader configReader = new ConfigReader();
         public static void WaitForPageToLoad()
         {
-            new WebDriverWait(WebDriverManager.GetDriver(), TimeSpan.FromSeconds(WebDriverConfig.explicitWait))
+            new WebDriverWait(WebDriverManager.GetDriver(), TimeSpan.FromSeconds(configReader.ImplicitWait))
                 .Until(d => ((IJavaScriptExecutor)d).ExecuteScript("return document.readyState").Equals("complete"));
         }
     }
