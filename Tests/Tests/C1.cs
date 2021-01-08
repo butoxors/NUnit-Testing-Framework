@@ -9,7 +9,7 @@ namespace Tests
     [TestFixture]
     public class C1 : BaseTest
     {
-        private GoogleHomePage googleHomePage = new GoogleHomePage();
+        private IGoogleHomePage googleHomePage = PageLoader.GetGoogleHomePage;
 
         [TestCase("Selenium IDE export to C#", 3)]
         public void GoogleCheckTest(string query, int resultOrder)

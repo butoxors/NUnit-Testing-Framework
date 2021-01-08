@@ -12,13 +12,13 @@ namespace Framework.Main.Core.Driver.Factory
 {
     internal static class WebDriverFactory
     {
-        internal static Dictionary<DriverType, List<IWebDriver>> webDrivers = new Dictionary<DriverType, List<IWebDriver>>();
+        internal static Dictionary<DriverType, Stack<IWebDriver>> webDrivers = new Dictionary<DriverType, Stack<IWebDriver>>();
         static ConfigReader configReader = new ConfigReader();
         static DriverType driverType = configReader.DriverType;
 
         static WebDriverFactory()
         {
-            webDrivers[driverType] = new List<IWebDriver>();
+            webDrivers[driverType] = new Stack<IWebDriver>();
         }
 
         public static IWebDriver GetDriver(DriverType driverType)
@@ -28,7 +28,7 @@ namespace Framework.Main.Core.Driver.Factory
             if (driver == null)
             {
                 driver = CreateDriver(driverType);
-                webDrivers[driverType].Add(driver);
+                webDrivers[driverType].Push(driver);
             }
 
             return driver;
@@ -52,7 +52,7 @@ namespace Framework.Main.Core.Driver.Factory
 
         internal static void TerminateAll()
         {
-            webDrivers.ToList().ForEach(x => x.Value.ForEach(a => a.Quit()));
+            webDrivers.ToList().ForEach(x => x.Value.Pop().Quit());
         }
     }
 }

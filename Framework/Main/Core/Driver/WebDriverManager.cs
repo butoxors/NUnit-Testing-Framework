@@ -8,7 +8,7 @@ namespace Framework.Main.Core.Driver
     public static class WebDriverManager
     {
         private static ConfigReader configReader = new ConfigReader();
-        public static IWebDriver driver;
+        private static IWebDriver driver;
 
         public static IWebDriver GetDriver()
         {
