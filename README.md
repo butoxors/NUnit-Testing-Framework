@@ -42,6 +42,7 @@ ChromeDriver version is *87.0.4280.88*
   - ~~Config readers;~~
   - Logging;
   - Report;
+  - Ioc;
   - etc.
 
 ## Contributing
