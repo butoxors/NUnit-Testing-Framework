@@ -1,5 +1,4 @@
-﻿using Framework.Main.Core.Step;
-using System;
+﻿using Framework.Main.Core.Advices;
 
 namespace Tests.Pages
 {
