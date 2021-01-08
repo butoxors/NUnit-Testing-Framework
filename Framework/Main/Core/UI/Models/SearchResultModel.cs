@@ -1,4 +1,4 @@
-﻿  namespace Framework.Main.Core.UI.Components
+﻿namespace Framework.Main.Core.UI.Components
 {
     public class SearchResultModel
     {

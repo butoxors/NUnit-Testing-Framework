@@ -1,4 +1,5 @@
 ﻿using Framework.Main.Core.Enums;
+using Framework.Main.Core.Ioc;
 using Framework.Main.Core.Utils;
 using System.Configuration;
 

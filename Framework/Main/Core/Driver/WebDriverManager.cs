@@ -1,16 +1,17 @@
 ﻿using Framework.Main.Core.Configs;
 using Framework.Main.Core.Driver.Factory;
+using Framework.Main.Core.Ioc;
 using OpenQA.Selenium;
 using System;
 
 namespace Framework.Main.Core.Driver
 {
-    public static class WebDriverManager
+    public class WebDriverManager : IWebDriverManager
     {
-        private static ConfigReader configReader = new ConfigReader();
+        private static IConfigReader configReader = DIContainer.GetService<IConfigReader>();
         private static IWebDriver driver;
 
-        public static IWebDriver GetDriver()
+        public IWebDriver GetDriver()
         {
             if (driver == null)
             {
@@ -22,9 +23,15 @@ namespace Framework.Main.Core.Driver
             return driver;
         }
 
-        public static void CleanUp()
+        public void CleanUp()
         {
             WebDriverFactory.TerminateAll();
         }
+    }
+
+    public interface IWebDriverManager
+    {
+        IWebDriver GetDriver();
+        void CleanUp();
     }
 }

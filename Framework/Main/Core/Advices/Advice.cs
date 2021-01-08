@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Reflection;
 
-namespace Framework.Main.Core.Step
+namespace Framework.Main.Core.Advices
 {
-    public class StepAdvice<T> : DispatchProxy
+    public class Advice<T> : DispatchProxy
     {
         private T _decorated;
 
         public static T Create(T decorated)
         {
-            object proxy = Create<T, StepAdvice<T>>();
-            ((StepAdvice<T>)proxy).SetDecorator(decorated);
+            object proxy = Create<T, Advice<T>>();
+            ((Advice<T>)proxy).SetDecorator(decorated);
 
             return (T)proxy;
         }
@@ -24,7 +24,7 @@ namespace Framework.Main.Core.Step
         {
             if (targetMethod != null)
             {
-                StepLog(targetMethod, args);
+                Before(targetMethod, args);
                 var result = targetMethod.Invoke(_decorated, args);
 
                 return result;
@@ -32,16 +32,13 @@ namespace Framework.Main.Core.Step
             throw new ArgumentException(nameof(targetMethod));
         }
 
-        private void StepLog(MethodInfo methodInfo, object[] args)
+        private void Before(MethodInfo methodInfo, object[] args)
         {
             Attribute[] attr = (Attribute[])methodInfo.GetCustomAttributes(typeof(Attributes.Step));
             foreach (var a in attr)
             {
                 if (a is Attributes.Step)
-                {
-                    Attributes.Step step = (Attributes.Step)a;
-                    Console.WriteLine(" -- Navigate to " + step.dest);
-                }
+                    StepAdvice.StepLog((Attributes.Step)a);
             }
         }
     }

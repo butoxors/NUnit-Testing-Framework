@@ -1,5 +1,6 @@
 ﻿using Framework.Main.Core.Configs;
 using Framework.Main.Core.Enums;
+using Framework.Main.Core.Ioc;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
@@ -13,7 +14,7 @@ namespace Framework.Main.Core.Driver.Factory
     internal static class WebDriverFactory
     {
         internal static Dictionary<DriverType, Stack<IWebDriver>> webDrivers = new Dictionary<DriverType, Stack<IWebDriver>>();
-        static ConfigReader configReader = new ConfigReader();
+        static IConfigReader configReader = DIContainer.GetService<IConfigReader>();
         static DriverType driverType = configReader.DriverType;
 
         static WebDriverFactory()
