@@ -36,7 +36,7 @@
 ChromeDriver version is *87.0.4280.88*
 
 ## To do:
-  - Implement page decoration;
+  - ~~Implement page decoration~~ - 08.01.2021;
   - ~~Config readers;~~
   - Logging;
   - Report;
