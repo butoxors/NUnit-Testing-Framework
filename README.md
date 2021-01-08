@@ -3,9 +3,11 @@
 - Framework - **Framework core lib**
   - Main
     - Core
+      - Advices - **Proxy wrappers**
+      - Attributes - **Custom attributes**
+      - Configs - **Config readers**
       - Driver - **WebDriver set up**
       - Enums - **Framework enums**
-        - Constants - **Framework constants**
       - Test - **Tests structure**
       - UI
         - Models - **Data models**
